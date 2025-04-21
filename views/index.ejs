@@ -5,57 +5,61 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Freelancers Hub</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(to right, #667eea, #764ba2);
+    }
+    .hide-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+    .hide-scrollbar::-webkit-scrollbar {
+  display: none; 
+}
+    .glass {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
 </head>
-<body class="bg-gray-50 text-gray-800">
-  <!-- Navbar -->
-  <nav class="bg-white shadow-md">
-    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-      <h1 class="text-2xl font-bold text-indigo-600">FreelancersHub</h1>
-      <ul class="flex space-x-6">
-        <li><a href="#" class="text-gray-700 hover:text-indigo-600 font-medium">Home</a></li>
-        <li><a href="#" class="text-gray-700 hover:text-indigo-600 font-medium">About</a></li>
-        <li><a href="#" class="text-gray-700 hover:text-indigo-600 font-medium">Contact</a></li>
-      </ul>
-    </div>
-  </nav>
+<body class="overflow-hidden min-h-screen flex items-center justify-center">
 
-  <!-- Hero Section with Forms -->
-  <section class="flex flex-col md:flex-row items-center justify-center px-6 py-16 max-w-6xl mx-auto">
-    <!-- Image -->
-    <div class="md:w-1/2 mb-10 md:mb-0">
-      <img src="/images/free.jpeg" alt="Freelancer" class="rounded-2xl shadow-md" />
+  <div class="max-w-7xl w-full px-6 py-12 flex flex-col lg:flex-row items-center gap-16">
+    
+    <!-- Hero Image -->
+    <div class="lg:w-1/2 text-white text-center lg:text-left space-y-6">
+      <h1 class="text-5xl font-extrabold drop-shadow-lg">Welcome to <span class="text-yellow-300">FreelancersHub</span></h1>
+      <p class="text-lg opacity-90">An all-in-one workspace where freelancers seamlessly manage clients, projects, and payments — all at one place.</p>
+      <img src="/images/img.png" alt="freelancer" class="w-full max-h-[700px] object-cover rounded-3xl shadow-lg mx-auto" />
     </div>
 
-    <!-- Forms -->
-    <div class="md:w-1/2 md:pl-10 w-full">
-      <div class="bg-white rounded-xl shadow-lg p-8 space-y-6">
-        <h2 class="text-xl font-bold text-center text-indigo-600">Welcome Back</h2>
+    <!-- Glassmorphism Card -->
+    <div class="lg:w-1/2 w-full glass rounded-3xl p-10 shadow-2xl text-white">
+      <h2 class="text-3xl font-bold text-center mb-8">Access Your Account</h2>
 
-        <!-- Login Form -->
-        <form action="/login" method="POST" class="space-y-4">
-          <input type="email" name="email" placeholder="Email" class="w-full px-4 py-2 border rounded-lg" required>
-          <input type="password" name="password" placeholder="Password" class="w-full px-4 py-2 border rounded-lg" required>
-          <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2 rounded-lg">Login</button>
-        </form>
+      <!-- Login -->
+      <form action="/login" method="POST" class="space-y-4 mb-6">
+        <input type="email" name="email" placeholder="Email" class="w-full bg-white bg-opacity-10 placeholder-white text-white px-3 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-400" required>
+        <input type="password" name="password" placeholder="Password" class="w-full bg-white bg-opacity-10 placeholder-white text-white px-3 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-400" required>
+        <button type="submit" class="w-full bg-yellow-400 hover:bg-yellow-500 transition text-black font-semibold py-2 rounded-xl">Login</button>
+      </form>
 
-        <div class="text-center text-sm text-gray-500">or</div>
+      <div class="text-center text-sm text-white opacity-70 mb-6">— or create a new account —</div>
 
-        <!-- Signup Form -->
-        <form action="/signup" method="POST" class="space-y-4">
-          <input type="text" name="name" placeholder="Full Name" class="w-full px-4 py-2 border rounded-lg" required>
-          <input type="email" name="email" placeholder="Email" class="w-full px-4 py-2 border rounded-lg" required>
-          <input type="password" name="password" placeholder="Password" class="w-full px-4 py-2 border rounded-lg" required>
-          <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg">Register</button>
-        </form>
-      </div>
+      <!-- Signup -->
+      <form action="/signup" method="POST" class="space-y-4">
+        <input type="text" name="name" placeholder="Full Name" class="w-full bg-white bg-opacity-10 placeholder-white text-white px-3 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-pink-400" required>
+        <input type="email" name="email" placeholder="Email" class="w-full bg-white bg-opacity-10 placeholder-white text-white px-3 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-pink-400" required>
+        <input type="password" name="password" placeholder="Password" class="w-full bg-white bg-opacity-10 placeholder-white text-white px-3 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-pink-400" required>
+        <input type="text" name="role" placeholder="Role" class="w-full bg-white bg-opacity-10 placeholder-white text-white px-3 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-pink-400" required>
+         <input type="number" name="number" placeholder="Number" class="w-full bg-white bg-opacity-10 placeholder-white text-white px-3 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-pink-400" required>
+        <button type="submit" class="w-full bg-pink-500 hover:bg-pink-600 transition text-white font-semibold py-2 rounded-xl">Register</button>
+      </form>
     </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="bg-white shadow-inner mt-10">
-    <div class="max-w-7xl mx-auto px-4 py-6 text-center text-sm text-gray-500">
-      &copy; <%= new Date().getFullYear() %> FreelancersHub. All rights reserved.
-    </div>
-  </footer>
+  </div>
 </body>
 </html>

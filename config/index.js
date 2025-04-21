@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const dbgr = require("debug")("development:mongoose");
-const Freelancer = require("../models/freelancerModel");
+const Freelancer = require("../models/client");
 const freelancerData = require("./data");
 
 mongoose

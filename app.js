@@ -3,7 +3,7 @@ const app=express();
 var cookieParser = require('cookie-parser');
 const session = require('express-session')
 const flash = require('connect-flash')
-const rs=require("./models/freelancerModel.js")
+const rs=require("./models/client.js")
 
 const indexRouter=require("./routers/index.js")
 
