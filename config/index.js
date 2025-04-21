@@ -10,24 +10,24 @@ mongoose
   })
   .then(() => {
     console.log("Connection established");
-    initDb(); // move inside here to avoid async timing issues
+    // initDb(); // move inside here to avoid async timing issues
   })
   .catch((err) => {
     dbgr("Connection error:", err);
   });
 
-const initDb = async () => {
-  try {
-    const count = await Freelancer.countDocuments();
-    if (count === 0) {
-      await Freelancer.insertMany(freelancerData.data);
-      console.log("Data inserted successfully");
-    } else {
-      console.log("Data already exists. Skipping insertion.");
-    }
-  } catch (err) {
-    console.error("Error inserting data:", err);
-  }
-};
+// const initDb = async () => {
+//   try {
+//     const count = await Freelancer.countDocuments();
+//     if (count === 0) {
+//       await Freelancer.insertMany(freelancerData.data);
+//       console.log("Data inserted successfully");
+//     } else {
+//       console.log("Data already exists. Skipping insertion.");
+//     }
+//   } catch (err) {
+//     console.error("Error inserting data:", err);
+//   }
+// };
 
 module.exports = mongoose.connection;

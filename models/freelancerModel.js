@@ -21,16 +21,20 @@ const FreelancerSchema= new Schema({
             unique:true,
             minlength: 10,
         },
-        projectName: {
+        projectName: [{
             type:String,
             required:true
-        },
+        }],
         paymentStatus:{
             type:String,
             required:true,
             enum: ['Paid', 'Unpaid'],
             default: 'Unpaid'
-        }
+        },
+        clients:[{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Client'
+        }]
       
       
 },{ timestamps: true })
