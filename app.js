@@ -1,57 +1,70 @@
-const express = require("express")
-const app=express();
-var cookieParser = require('cookie-parser');
-const session = require('express-session')
-const flash = require('connect-flash')
-var passport = require('passport');
-const userModel=require("./models/user.js")
-const clientModel=require("./models/client.js")
-const path = require("path");
-const logger = require("morgan");
+const express = require('express');
+const app = express();
+const path = require('path');
+const logger = require('morgan');
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
+const flash = require('connect-flash');
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
+require('dotenv').config();
 
-const db=require('./config/index.js')
-const indexRouter=require("./routers/index.js")
-const userRouter=require('./routers/users')
-const LocalStrategy=require("passport-local");
+// Models
+const userModel = require('./models/user');
+const clientModel = require('./models/client');
 
-app.set("view engine","ejs")
+// Database Config
+const db = require('./config/index');
+
+// Routers
+const indexRouter = require('./routers/index');
+const userRouter = require('./routers/users');
+
+// =======================
+// Middleware Setup
+// =======================
+
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
-app.set("views",path.join(__dirname,'views'))
-app.use(express.json())
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
+// =======================
+// Session and Passport Setup
+// =======================
 
 app.use(session({
-    resave: false,
-    saveUninitialized:false,
-    secret:"mysecret",
-  }))
-  app.use(passport.initialize());
-  app.use(passport.session());
-  passport.use(userModel.createStrategy());
-  passport.serializeUser(userModel.serializeUser());
-  passport.deserializeUser(userModel.deserializeUser());
-  app.use(flash());
-  passport.use(new LocalStrategy(userModel.authenticate()));
+  secret: 'mysecret',
+  resave: false,
+  saveUninitialized: false,
+}));
 
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
 
-require('dotenv').config()
-app.use(logger('dev'));
+// Passport Local Strategy
+passport.use(userModel.createStrategy());
+passport.serializeUser(userModel.serializeUser());
+passport.deserializeUser(userModel.deserializeUser());
 
+// (Optional, but clean: no need to reinitialize LocalStrategy again below)
 
+// =======================
+// Routes
+// =======================
 
-app.use(express.urlencoded({extended:true}))
+app.use('/', indexRouter);
+app.use('/users', userRouter);
 
+// =======================
+// Server Start
+// =======================
 
-
-app.use("/",indexRouter)
-app.use("/users",userRouter)
-
-
-
-
-
-app.listen(process.env.PORT,(req,res)=>{
-    console.log("Connected to the app")
-})
-
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+});
