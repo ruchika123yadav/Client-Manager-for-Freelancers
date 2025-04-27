@@ -29,7 +29,36 @@ module.exports.signupUser = async (req, res) => {
 };
 
 
-module.exports.loginUser=async(req,res)=>{
-    res.redirect('/users/profile')
+// module.exports.loginUser = async (req, res, next) => {
+//     passport.authenticate('local', (err, user, info) => {
+//         console.log(user);
+        
+//         if (err) {
+//             return next(err);
+//         }
+//         if (!user) {
+//             req.flash('error', 'Invalid username or password');
+//             return res.redirect('/');
+//         }
+//         req.login(user, (err) => {
+//             if (err) {
+//                 return next(err);
+//             }
+//             req.flash('success', 'Welcome back!');
+//             return res.redirect('/users/profile');
+//         });
+//     })(req, res, next);
+// };
 
+
+
+
+module.exports.logoutUser=async(req,res)=>{
+    req.logout((err)=>{
+        if(err){
+          console.log(err);
+        }
+        req.flash("success","Logged out successfully")
+        res.redirect('/')
+      })
 }
