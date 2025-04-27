@@ -11,7 +11,7 @@ router.post("/signup", userController.signupUser);
 
 router.post('/login', passport.authenticate('local', {
     successRedirect: '/users/profile',
-    failureRedirect: '/users/profile',
+    failureRedirect: '/',
     failureFlash: true,
     successFlash: 'Welcome!'
 }),(req,res)=>{});
