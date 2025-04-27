@@ -20,7 +20,8 @@ router.post('/login',
 
 
 router.get("/profile",(req,res)=>{
-    res.render("profile");
+    res.render('profile', );
+
 })  
 
 module.exports=router
