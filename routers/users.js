@@ -15,9 +15,8 @@ router.post('/login', passport.authenticate('local', {
     failureFlash: true,
     successFlash: 'Welcome!'
 }),(req,res)=>{});
-router.get("/profile",(req,res)=>{
+router.get("/profile",isLoggedIn,(req,res)=>{
     res.render('profile',{user:req.user});
-
 })  
 router.get("/logout",isLoggedIn,userController.logoutUser);
 module.exports=router
