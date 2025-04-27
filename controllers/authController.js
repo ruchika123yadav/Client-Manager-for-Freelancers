@@ -29,28 +29,6 @@ module.exports.signupUser = async (req, res) => {
 };
 
 
-// module.exports.loginUser = async (req, res, next) => {
-//     passport.authenticate('local', (err, user, info) => {
-//         console.log(user);
-        
-//         if (err) {
-//             return next(err);
-//         }
-//         if (!user) {
-//             req.flash('error', 'Invalid username or password');
-//             return res.redirect('/');
-//         }
-//         req.login(user, (err) => {
-//             if (err) {
-//                 return next(err);
-//             }
-//             req.flash('success', 'Welcome back!');
-//             return res.redirect('/users/profile');
-//         });
-//     })(req, res, next);
-// };
-
-
 
 
 module.exports.logoutUser=async(req,res)=>{

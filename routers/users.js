@@ -16,7 +16,7 @@ router.post('/login', passport.authenticate('local', {
     successFlash: 'Welcome!'
 }),(req,res)=>{});
 router.get("/profile",(req,res)=>{
-    res.render('profile', );
+    res.render('profile',{user:req.user});
 
 })  
 router.get("/logout",isLoggedIn,userController.logoutUser);
