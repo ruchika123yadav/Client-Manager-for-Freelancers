@@ -1,5 +1,34 @@
-  <%layout('layouts/boilerplate')-%>
+<%- layout('layouts/boilerplate') -%>
 
-<body>
-    
+<body class="bg-light">
+
+  <div class="container mt-5">
+
+    <!-- User Profile Section -->
+    <div class="card shadow-sm mb-5">
+      <div class="card-body">
+
+        <div class="d-flex align-items-center mb-4">
+          <!-- Profile Picture -->
+          <img src="<%= user.profilePic || '/images/default-profile.jpg' %>" alt="Profile Picture" class="rounded-circle border border-secondary me-4" style="width: 100px; height: 100px; object-fit: cover;">
+          
+          <div>
+            <h2 class="h4 mb-1"><%= user.fullName %></h2>
+            <p class="text-muted mb-0"><%= user.role %></p>
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <p class="mb-2"><strong>Email:</strong> <%= user.email %></p>
+          <p class="mb-2"><strong>Phone Number:</strong> <%= user.phoneNumber %></p>
+        </div>
+
+        <!-- Edit Profile Link -->
+        <a href="/users/edit-profile" class="btn btn-primary">Edit Profile</a>
+
+      </div>
+    </div>
+
+  </div>
+
 </body>
