@@ -1,51 +1,55 @@
 <% layout('layouts/boilerplate') -%>
 
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="card shadow-lg border-0">
+        <div class="card-header text-white text-center fw-bold" style="background: linear-gradient(90deg, #6a11cb, #2575fc); border: none;">
+          <h3 class="mb-0">🚀 Add New Client</h3>
+        </div>
+        <div class="card-body bg-light">
 
- 
-<body>
-    <div class="row">
-        <!-- <div class="col-8 offset-2"> -->
-        <div class="col-12 col-md-8 offset-md-2">
+          <form method="POST" action="/client/info" enctype="multipart/form-data" novalidate>
 
-    <h2 style="margin-top: 20px; color: #fe4248;">Fill the Information</h2>
- <form method="post" action="/client/info" novalidate class="needs-validation" enctype="multipart/form-data">
-     
-   <div>
-    <label for="name" class="form-label">Title</label>
-   <input type="text" class="form-control" placeholder="Enter the Name" name="name" required>
-    </div><br>
-   
-   <div>
-      <label for="email" class="form-label">Email</label>
-      <textarea class="form-control" type="text" placeholder="Enter the Email" name="email" required></textarea>
-   </div><br>
+            <div class="mb-3">
+              <label for="name" class="form-label fw-semibold">Name</label>
+              <input type="text" class="form-control" id="name" name="name" placeholder="John Doe" required>
+            </div>
 
-   <div>
-    <label for="phone" class="form-label">Phone Number</label>
-   <input type="number" class="form-control"  name="number" required>
-   </div><br>
-   
-<div class="row"> 
-   <div class="col-md-3">
-    <label for="company" class="form-label">Company Name</label>
-   <input  class="form-control" placeholder="Enter Company" name="company" required>
-    </div><br>
-   
-   <div class="col-md-8">
-    <label for="notes" class="form-label">Notes</label>
-   <input type="text" class="form-control" placeholder="Add Notes" name="notes" required>
-    </div><br>
+            <div class="mb-3">
+                <label for="email" class="form-label fw-semibold">Email</label>
+                <input type="email" class="form-control" id="number" name="email" placeholder="johndoe@gmail.com" required>
+              </div>
+
+             
+            <div class="mb-3">
+                <label for="notes" class="form-label fw-semibold">Notes</label>
+                <textarea class="form-control" id="notes" name="notes" placeholder="I would like to add some Gradient colors...." required></textarea>
+              </div>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="company" class="form-label fw-semibold">Company Name</label>
+                <input type="text" class="form-control" id="company" name="company" placeholder="Cognizant" required>
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label for="phone" class="form-label fw-semibold">Phone Number</label>
+                <input type="number" class="form-control" id="phone" name="phone" placeholder="+91 999 999 9999" required>
+              </div>
+            </div>
+            
+
+            <div class="text-center mt-4">
+              <button type="submit" class="btn fw-bold text-white px-5 py-2" style="background: linear-gradient(90deg, #6a11cb, #2575fc); border: none;">
+                Add
+              </button>
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-
-     
-   
-  
-<button class="btn btn-primary" style="background-color: #fe4248; width:5rem;">Add</button>
-
-<br><br>
-
- </form>
-</div>
-</div>
-</body>
- 
