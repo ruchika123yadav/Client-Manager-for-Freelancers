@@ -1,27 +1,51 @@
-
-
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg sticky-top shadow-sm mb-3 border-0 vibrant-navbar">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand text-white fw-bold fs-4" href="#">MyBrand</a>
+    <button class="navbar-toggler text-white border-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+      aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    
+    <div class="collapse navbar-collapse" id="navbarContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link active text-white fw-semibold" aria-current="page" href="#">Home</a>
         </li>
- 
       </ul>
+      
+      <ul class="navbar-nav ms-auto align-items-center">
+      
 
-           <ul class="navbar-nav ms-auto ">
-           <li class="nav-item">
-            <a class="nav-link active" href="/users/logout">Logout</a>
-           </li>
-          </ul>
-       
-         
-       
+        <!-- Add Client Link -->
+        <li class="nav-item">
+          <a class="nav-link text-white fw-semibold" href="/client/info">Add Client</a>
+        </li>
+
+        <!-- Logout Link -->
+        <li class="nav-item">
+          <a class="nav-link text-white fw-semibold" href="/users/logout">Logout</a>
+        </li>
+      </ul>
     </div>
   </div>
 </nav>
+
+<style>
+  .vibrant-navbar {
+    background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+  }
+
+  .navbar-toggler {
+    filter: invert(1);
+  }
+
+  .nav-link:hover {
+    color: #ffe66d !important;
+    transition: color 0.3s ease-in-out;
+  }
+
+  .navbar-brand:hover {
+    color: #ffe66d !important;
+    transition: color 0.3s ease-in-out;
+  }
+</style>

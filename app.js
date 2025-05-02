@@ -21,6 +21,7 @@ const db = require('./config/index.js');
 // Routers
 const indexRouter = require("./routers/index.js");
 const userRouter = require('./routers/users.js');
+const clientRouter=require("./routers/client.js")
 
 // View Engine Setup
 app.set("view engine", "ejs");
@@ -56,6 +57,7 @@ app.use(flash());
 // Routes
 app.use("/", indexRouter);
 app.use("/users", userRouter);
+app.use("/client", clientRouter);
 
 // Server Start
 const PORT = process.env.PORT || 3000;
