@@ -3,8 +3,8 @@ const mongoose = require("mongoose");
 const clientSchema = new mongoose.Schema({
   userId: { 
     type: mongoose.Schema.Types.ObjectId, 
-    ref: "User", required: true
- }, // freelancer
+    ref: "User",
+          }, // freelancer
   name:   { 
     type: String,
      required: true
