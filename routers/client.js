@@ -7,6 +7,8 @@ const Client=require("../models/client.js")
 
 router.get("/info",isLoggedIn,clientController.clientForm)
 
-// router.post("/info",isLoggedIn,clientController.addClientInfo)
+router.post("/info",isLoggedIn,clientController.addClientInfo)
+
+router.get("/addproject",isLoggedIn,clientController.addProject)
 
 module.exports=router
