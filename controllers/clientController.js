@@ -10,8 +10,6 @@ module.exports.clientForm=async(req,res)=>{
 module.exports.addClientInfo = async (req, res) => {
     try {
     //   let { name, email, notes, company, phone } = req.body;
-    
-  
     //   await Client.create({ name, email, notes, company, phone });
     const newClient=new Client(req.body.client);
     newClient.userId=req.user._id
@@ -27,5 +25,11 @@ module.exports.addClientInfo = async (req, res) => {
   
 
 module.exports.addProject=async(req,res)=>{
-    res.render('addProject')
+    try {
+        const clients = await Client.find({});
+        res.render('addProject', { clients });
+    } catch (err) {
+        console.error("Error fetching clients:", err);
+        res.status(500).send("Server Error");
+    }
 }
