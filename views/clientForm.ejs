@@ -9,33 +9,33 @@
         </div>
         <div class="card-body bg-light">
 
-          <form method="POST" action="/client/info" enctype="multipart/form-data" novalidate>
+          <form method="POST" action="/client/<%=clientId%>/info"  novalidate>
 
             <div class="mb-3">
               <label for="name" class="form-label fw-semibold">Name</label>
-              <input type="text" class="form-control" id="name" name="name" placeholder="John Doe" required>
+              <input type="text" class="form-control" id="name" name="client[name]" placeholder="John Doe" required>
             </div>
 
             <div class="mb-3">
                 <label for="email" class="form-label fw-semibold">Email</label>
-                <input type="email" class="form-control" id="number" name="email" placeholder="johndoe@gmail.com" required>
+                <input type="email" class="form-control" id="number" name="client[email]" placeholder="johndoe@gmail.com" required>
               </div>
 
              
             <div class="mb-3">
                 <label for="notes" class="form-label fw-semibold">Notes</label>
-                <textarea class="form-control" id="notes" name="notes" placeholder="I would like to add some Gradient colors...." required></textarea>
+                <textarea class="form-control" id="notes" name="client[notes]" placeholder="I would like to add some Gradient colors...." required></textarea>
               </div>
 
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label for="company" class="form-label fw-semibold">Company Name</label>
-                <input type="text" class="form-control" id="company" name="company" placeholder="Cognizant" required>
+                <input type="text" class="form-control" id="company" name="client[company]" placeholder="Cognizant" required>
               </div>
 
               <div class="col-md-6 mb-3">
                 <label for="phone" class="form-label fw-semibold">Phone Number</label>
-                <input type="number" class="form-control" id="phone" name="phone" placeholder="+91 999 999 9999" required>
+                <input type="number" class="form-control" id="phone" name="client[phone]" placeholder="+91 999 999 9999" required>
               </div>
             </div>
             
