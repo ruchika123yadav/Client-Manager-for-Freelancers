@@ -16,6 +16,7 @@ module.exports.addClientInfo = async (req, res) => {
     const newClient=new Client(req.body.client);
     newClient.userId=req.user._id
     await newClient.save()
+    console.log(newClient)
   
       res.redirect("/client/addproject");
     } catch (err) {
