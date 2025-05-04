@@ -9,10 +9,13 @@ module.exports.clientForm=async(req,res)=>{
 
 module.exports.addClientInfo = async (req, res) => {
     try {
-      let { name, email, notes, company, phone } = req.body;
+    //   let { name, email, notes, company, phone } = req.body;
     
   
-      await Client.create({ name, email, notes, company, phone });
+    //   await Client.create({ name, email, notes, company, phone });
+    const newClient=new Client(req.body.client);
+    newClient.userId=req.user._id
+    await newClient.save()
   
       res.redirect("/client/addproject");
     } catch (err) {
