@@ -4,7 +4,9 @@ const Client =require("../models/client.js")
 module.exports.clientForm=async(req,res)=>{
     // const clientId=req.params.id
     // const client=await Client.findById(clientId).populate('userId')
-    res.render('clientform')
+    let error=req.flash('error');
+    let success=req.flash('success');
+    res.render('clientform',{success,error})
 }
 
 module.exports.addClientInfo = async (req, res) => {
@@ -15,19 +17,22 @@ module.exports.addClientInfo = async (req, res) => {
     newClient.userId=req.user._id
     await newClient.save()
     console.log(newClient)
-  
-      res.redirect("/client/addproject");
+    req.flash("success",'Client added successfully!')
+    res.redirect("/client/addproject");
     } catch (err) {
+      req.flash("error",'This email has already been taken!')
       console.error("Error adding client:", err);
-      res.status(500).json({ error: "Internal server error" });
+      res.status(500).redirect("/client/info").json({ error: "Internal server error" });
     }
   };
   
 
 module.exports.addProject=async(req,res)=>{
     try {
+      let error=req.flash('error');
+      let success=req.flash('success');
         const clients = await Client.find({});
-        res.render('addProject', { clients });
+        res.render('addProject', { clients,success,error });
     } catch (err) {
         console.error("Error fetching clients:", err);
         res.status(500).send("Server Error");

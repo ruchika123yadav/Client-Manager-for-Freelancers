@@ -1,5 +1,17 @@
 <% layout('layouts/boilerplate') -%>
 
+<% if(success.length > 0){ %>
+  <div class="alert alert-success alert-dismissible fade show position-fixed top-5 start-50 translate-middle-x mt-4 shadow-lg z-3 text-center" style="z-index: 1050;" role="alert">
+    ✅ <%= success %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% } else if(error.length > 0){ %>
+  <div class="alert alert-danger alert-dismissible fade show position-fixed top-5 start-50 translate-middle-x mt-4 shadow-lg z-3 text-center" style="z-index: 1050;" role="alert">
+    ❌ <%= error %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% } %>
+
 <div class="container py-5">
   <div class="row justify-content-center">
     <div class="col-lg-8">
@@ -8,24 +20,22 @@
           <h3 class="mb-0">🚀 Add New Client</h3>
         </div>
         <div class="card-body bg-light">
- 
- 
-           <form method="POST" action="/client/info">
-             <div class="mb-3">
+
+          <form method="POST" action="/client/info">
+            <div class="mb-3">
               <label for="name" class="form-label fw-semibold">Name</label>
               <input type="text" class="form-control" id="name" name="client[name]" placeholder="John Doe" required>
             </div>
 
             <div class="mb-3">
-                <label for="email" class="form-label fw-semibold">Email</label>
-                <input type="email" class="form-control" id="number" name="client[email]" placeholder="johndoe@gmail.com" required>
-              </div>
+              <label for="email" class="form-label fw-semibold">Email</label>
+              <input type="email" class="form-control" id="email" name="client[email]" placeholder="johndoe@gmail.com" required>
+            </div>
 
-             
             <div class="mb-3">
-                <label for="notes" class="form-label fw-semibold">Notes</label>
-                <textarea class="form-control" id="notes" name="client[notes]" placeholder="I would like to add some Gradient colors...." required></textarea>
-              </div>
+              <label for="notes" class="form-label fw-semibold">Notes</label>
+              <textarea class="form-control" id="notes" name="client[notes]" placeholder="I would like to add some Gradient colors...." required></textarea>
+            </div>
 
             <div class="row">
               <div class="col-md-6 mb-3">
@@ -38,7 +48,6 @@
                 <input type="number" class="form-control" id="phone" name="client[phone]" placeholder="+91 999 999 9999" required>
               </div>
             </div>
-            
 
             <div class="text-center mt-4">
               <button type="submit" class="btn fw-bold text-white px-5 py-2" style="background: linear-gradient(90deg, #6a11cb, #2575fc); border: none;">
@@ -48,10 +57,19 @@
 
           </form>
 
-
-          
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<script>
+  // Auto dismiss alert after 5 seconds
+  setTimeout(() => {
+    const alertEl = document.querySelector('.alert');
+    if (alertEl) {
+      const bsAlert = bootstrap.Alert.getOrCreateInstance(alertEl);
+      bsAlert.close();
+    }
+  }, 5000);
+</script>
