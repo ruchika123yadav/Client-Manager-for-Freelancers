@@ -10,4 +10,4 @@
           <a href="/clients/<%= client._id %>" class="text-blue-500 hover:text-blue-700 mt-4 inline-block">View Details</a>
         </div>
       <% }) %>
-    </div>
+</div>

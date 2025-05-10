@@ -5,27 +5,59 @@
   <div class="container mt-5">
 
     <!-- User Profile Section -->
-    <div class="card shadow-sm mb-5">
+    <div class="card shadow-lg border-0 mb-5">
       <div class="card-body">
-
         <div class="d-flex align-items-center mb-4">
           <!-- Profile Picture -->
-          <img src="" alt="Profile Picture" class="rounded-circle border border-secondary me-4" style="width: 100px; height: 100px; object-fit: cover;">
-          
+          <% if (user.picture && user.picture.data) { %>
+            <img src="data:<%= user.picture.contentType %>;base64,<%= user.picture.data.toString('base64') %>" alt="Profile Picture" class="rounded-circle border border-secondary me-4" style="width: 100px; height: 100px; object-fit: cover;">
+          <% } else { %>
+            <img src="https://via.placeholder.com/100" alt="Profile Picture" class="rounded-circle border border-secondary me-4" style="width: 100px; height: 100px; object-fit: cover;">
+          <% } %>
+
           <div>
-            <h2 class="h4 mb-1"><%= user.fullName %></h2>
-            <p class="text-muted mb-0"><%= user.role %></p>
+            <h2 class="h4 mb-1 fw-bold text-primary"><%= user.fullName %></h2>
+            <span class="badge bg-info text-dark text-capitalize"><%= user.role %></span>
           </div>
         </div>
 
-        <div class="mb-4">
+        <div class="mb-4 ps-2">
           <p class="mb-2"><strong>Email:</strong> <%= user.email %></p>
           <p class="mb-2"><strong>Phone Number:</strong> <%= user.phoneNumber %></p>
         </div>
 
         <!-- Edit Profile Link -->
-        <a href="/users/edit-profile" class="btn btn-primary">Edit Profile</a>
-        
+        <a href="/users/edit-profile" class="btn btn-outline-primary fw-semibold">✏️ Edit Profile</a>
+      </div>
+    </div>
+
+    <!-- Client List Section -->
+    <div class="card shadow-lg border-0">
+      <div class="card-header bg-gradient fw-bold text-white text-center" style="background: linear-gradient(90deg, #ff6a00, #ee0979);">
+        <h4 class="mb-0">🧑‍💼 Your Clients</h4>
+      </div>
+      <div class="card-body bg-white">
+
+        <% if (user.clients && user.clients.length > 0) { %>
+          <div class="row g-4">
+            <% user.clients.forEach(client => { %>
+              <div class="col-md-6 col-lg-4">
+                <div class="card h-100 shadow-sm border-0">
+                  <div class="card-body">
+                    <h5 class="card-title text-primary"><%= client.name %></h5>
+                    <p class="card-text mb-1"><strong>Email:</strong> <%= client.email %></p>
+                    <p class="card-text mb-1"><strong>Phone:</strong> <%= client.phone %></p>
+                    <p class="card-text"><strong>Company:</strong> <%= client.company %></p>
+                  </div>
+                </div>
+              </div>
+            <% }) %>
+          </div>
+        <% } else { %>
+          <div class="text-center text-muted py-4">
+            <p class="mb-0">😔 No clients available for this user.</p>
+          </div>
+        <% } %>
 
       </div>
     </div>

@@ -1,15 +1,10 @@
 const mongoose = require("mongoose");
-
+const Projects=require("./project.js")
 const clientSchema = new mongoose.Schema({
-  userId: { 
-    type: mongoose.Schema.Types.ObjectId, 
-    ref: "User",
-          }, // freelancer
   name:   { 
     type: String,
      required: true
      },
-
   email:  {
      type: String 
     },
@@ -22,8 +17,19 @@ const clientSchema = new mongoose.Schema({
   notes:  { 
     type: String 
 }, // personal notes about client
-}, {
+    projects:[{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:"Project"
+  }]
+},
+
+{
      timestamps: true
      });
 
+     clientSchema.post("findOneAndDelete",async(client)=>{
+      if(client){
+    await Projects.deleteMany({_id:{$in:client.projects}})
+      }
+     })
 module.exports = mongoose.model("Client", clientSchema);

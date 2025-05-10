@@ -11,6 +11,10 @@ const userSchema = new mongoose.Schema({
     data: Buffer,
     contentType: String
   },
+  clients:[{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:"Client"
+  }]
 }, { timestamps: true });
 
 userSchema.plugin(passportLocalMoongose, { usernameField: 'email' });
