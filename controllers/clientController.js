@@ -1,5 +1,5 @@
 const Client =require("../models/client.js")
-
+const User=require("../models/user.js")
 
 module.exports.clientForm=async(req,res)=>{
     // const clientId=req.params.id
@@ -10,21 +10,24 @@ module.exports.clientForm=async(req,res)=>{
 }
 
 module.exports.addClientInfo = async (req, res) => {
-    try {
-    //   let { name, email, notes, company, phone } = req.body;
-    //   await Client.create({ name, email, notes, company, phone });
-    const newClient=new Client(req.body.client);
-    newClient.userId=req.user._id
-    await newClient.save()
-    console.log(newClient)
-    req.flash("success",'Client added successfully!')
+  try {
+    const newClient = new Client(req.body.client);
+    await newClient.save();
+
+    // Add client reference to user
+    const user = await User.findById(req.user._id);
+    user.clients.push(newClient._id);
+    await user.save();
+
+    req.flash("success", "Client added successfully!");
     res.redirect("/client/addproject");
-    } catch (err) {
-      req.flash("error",'This email has already been taken!')
-      console.error("Error adding client:", err);
-      res.status(500).redirect("/client/info").json({ error: "Internal server error" });
-    }
-  };
+  } catch (err) {
+    console.error("Error adding client:", err);
+    req.flash("error", "This email has already been taken!");
+    res.status(500).redirect("/client/info");
+  }
+};
+
   
 
 module.exports.addProject=async(req,res)=>{
