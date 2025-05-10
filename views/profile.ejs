@@ -32,35 +32,37 @@
     </div>
 
     <!-- Client List Section -->
-    <div class="card shadow-lg border-0">
-      <div class="card-header bg-gradient fw-bold text-white text-center" style="background: linear-gradient(90deg, #ff6a00, #ee0979);">
-        <h4 class="mb-0">🧑‍💼 Your Clients</h4>
-      </div>
-      <div class="card-body bg-white">
-
-        <% if (user.clients && user.clients.length > 0) { %>
-          <div class="row g-4">
-            <% user.clients.forEach(client => { %>
-              <div class="col-md-6 col-lg-4">
-                <div class="card h-100 shadow-sm border-0">
-                  <div class="card-body">
-                    <h5 class="card-title text-primary"><%= client.name %></h5>
-                    <p class="card-text mb-1"><strong>Email:</strong> <%= client.email %></p>
-                    <p class="card-text mb-1"><strong>Phone:</strong> <%= client.phone %></p>
-                    <p class="card-text"><strong>Company:</strong> <%= client.company %></p>
-                  </div>
-                </div>
+    <!-- Clients Section -->
+<div class="card shadow-sm mb-5">
+  <div class="card-header text-white fw-bold text-center" style="background: linear-gradient(90deg, #43cea2, #185a9d);">
+    <h4 class="mb-0">👥 My Clients</h4>
+  </div>
+  <div class="card-body bg-light">
+    <% if (user.clients.length === 0) { %>
+      <p class="text-center text-muted">No clients assigned yet.</p>
+    <% } else { %>
+      <div class="row">
+        <% user.clients.forEach(client => { %>
+          <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card h-100 shadow-sm border-0">
+              <div class="card-body">
+                <h5 class="card-title fw-bold"><%= client.name %></h5>
+                <p class="card-text"><strong>Email:</strong> <%= client.email %></p>
+                <% if(client.phone) { %>
+                  <p class="card-text"><strong>Phone:</strong> <%= client.phone %></p>
+                <% } %>
+                <% if(client.company) { %>
+                  <p class="card-text"><strong>Company:</strong> <%= client.company %></p>
+                <% } %>
               </div>
-            <% }) %>
+            </div>
           </div>
-        <% } else { %>
-          <div class="text-center text-muted py-4">
-            <p class="mb-0">😔 No clients available for this user.</p>
-          </div>
-        <% } %>
-
+        <% }); %>
       </div>
-    </div>
+    <% } %>
+  </div>
+</div>
+
 
   </div>
 
