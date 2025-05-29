@@ -5,55 +5,31 @@
   <div class="container mt-5">
 
     <!-- User Profile Section -->
-    <div class="card shadow-lg border-0 mb-5">
-      <div class="card-body">
-        <div class="d-flex align-items-center mb-4">
-          <!-- Profile Picture -->
-          <% if (user.picture && user.picture.data) { %>
-            <img src="data:<%= user.picture.contentType %>;base64,<%= user.picture.data.toString('base64') %>" alt="Profile Picture" class="rounded-circle border border-secondary me-4" style="width: 100px; height: 100px; object-fit: cover;">
-          <% } else { %>
-            <img src="https://via.placeholder.com/100" alt="Profile Picture" class="rounded-circle border border-secondary me-4" style="width: 100px; height: 100px; object-fit: cover;">
-          <% } %>
+    <!-- User Profile Section -->
 
-          <div>
-            <h2 class="h4 mb-1 fw-bold text-primary"><%= user.fullName %></h2>
-            <span class="badge bg-info text-dark text-capitalize"><%= user.role %></span>
-          </div>
-        </div>
 
-        <div class="mb-4 ps-2">
-          <p class="mb-2"><strong>Email:</strong> <%= user.email %></p>
-          <p class="mb-2"><strong>Phone Number:</strong> <%= user.phoneNumber %></p>
-        </div>
-
-        <!-- Edit Profile Link -->
-        <a href="/users/edit-profile" class="btn btn-outline-primary fw-semibold">✏️ Edit Profile</a>
-      </div>
-    </div>
 
     <!-- Clients Section -->
-<div class="card shadow-sm mb-5">
-  <div class="card-header text-white fw-bold text-center" style="background: linear-gradient(90deg, #43cea2, #185a9d);">
+<div class="card shadow-lg border-0 mb-5">
+  <div class="card-header text-white text-center fw-bold" style="background: linear-gradient(90deg, #00c6ff, #0072ff);">
     <h4 class="mb-0">👥 My Clients</h4>
   </div>
   <div class="card-body bg-light">
     <% if (user.clients.length === 0) { %>
-      <p class="text-center text-muted">No clients assigned yet.</p>
+      <p class="text-center text-muted fst-italic">No clients assigned yet.</p>
     <% } else { %>
-      <div class="row">
+      <div class="row g-4">
         <% user.clients.forEach(client => { %>
-          <div class="col-md-6 col-lg-4 mb-4">
-            <div class="card h-100 shadow-sm border-0">
+          <div class="col-md-6 col-lg-4">
+            <div class="card h-100 border-0 shadow-sm rounded-4" style="background: linear-gradient(135deg, #f5f7fa, #c3cfe2);">
               <div class="card-body">
                 <h5 class="card-title fw-bold"><%= client.name %></h5>
                 <p class="card-text"><strong>Email:</strong> <%= client.email %></p>
                 <% if(client.phone) { %>
-
-                  <p class="card-text"><strong>Phone:</strong> <%= client.phone %></p>
-                   
+                  <p class="card-text"><strong>Phone:</strong> <%= client.phoneNumber %></p>
                 <% } %>
                 <% if(client.company) { %>
-                  <p class="card-text"><strong>Company:</strong> <%= client.company %></p>
+                  <p class="mb-0"><i class="bi bi-building text-warning me-1"></i><strong>Company:</strong> <%= client.company %></p>
                 <% } %>
               </div>
             </div>
