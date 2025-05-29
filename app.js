@@ -54,6 +54,13 @@ passport.deserializeUser(userModel.deserializeUser());
 // Flash Messages
 app.use(flash());
 
+// Local Variables
+app.use((req,res,next)=>{
+    res.locals.currUser=req.user;
+    next()
+})
+
+
 // Routes
 app.use("/", indexRouter);
 app.use("/users", userRouter);

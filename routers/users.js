@@ -17,15 +17,17 @@ router.post('/login', passport.authenticate('local', {
 }),(req,res)=>{});
 
 router.get("/profile", isLoggedIn, async (req, res) => {
-  try {
-    const userWithClients = await User.findById(req.user._id).populate('clients') ;
-    res.render('profile', { user: userWithClients });
-  } catch (err) {
-    console.error("Error fetching user with clients:", err);
-    req.flash("error", "Failed to load profile.");
-    res.redirect("back");
-  }
-});
+    try {
+      const userWithClients = await req.user.populate('clients');
+      console.log(userWithClients);
+      res.render('profile.ejs', { user: userWithClients });
+    } catch (err) {
+      console.error("Error fetching user with clients:", err);
+      req.flash("error", "Failed to load profile.");
+      res.redirect("/");
+    }
+  });
+  
 
 
 

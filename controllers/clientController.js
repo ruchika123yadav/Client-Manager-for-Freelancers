@@ -1,6 +1,7 @@
 const Client =require("../models/client.js")
 const User=require("../models/user.js")
 
+
 module.exports.clientForm=async(req,res)=>{
     // const clientId=req.params.id
     // const client=await Client.findById(clientId).populate('userId')
@@ -21,13 +22,12 @@ module.exports.addClientInfo = async (req, res) => {
 
     req.flash("success", "Client added successfully!");
     res.redirect("/client/addproject");
-  } catch (err) {
-    console.error("Error adding client:", err);
-    req.flash("error", "This email has already been taken!");
-    res.status(500).redirect("/client/info");
-  }
-};
-
+    } catch (err) {
+      req.flash("error",'This email has already been taken!')
+      console.error("Error adding client:", err);
+      res.status(500).redirect("/client/info").json({ error: "Internal server error" });
+    }
+  };
   
 
 module.exports.addProject=async(req,res)=>{
