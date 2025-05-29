@@ -6,45 +6,7 @@
 
     <!-- User Profile Section -->
     <!-- User Profile Section -->
-<div class="card shadow-lg border-0 mb-5 rounded-4">
-  <div class="card-header text-white d-flex align-items-center" style="background: linear-gradient(90deg, #6a11cb, #2575fc); border: none;">
-    <div class="d-flex align-items-center">
-      <% if (user.picture && user.picture.data) { %>
-        <img src="data:<%= user.picture.contentType %>;base64,<%= user.picture.data.toString('base64') %>" 
-             alt="Profile Picture" 
-             class="rounded-circle border border-white shadow-sm me-3" 
-             style="width: 80px; height: 80px; object-fit: cover;">
-      <% } else { %>
-        <img src="https://via.placeholder.com/80" 
-             alt="Profile Picture" 
-             class="rounded-circle border border-white shadow-sm me-3" 
-             style="width: 80px; height: 80px; object-fit: cover;">
-      <% } %>
 
-      <div>
-        <h4 class="mb-1 fw-bold text-white"><%= user.fullName %></h4>
-        <span class="badge bg-light text-dark text-capitalize"><%= user.role %></span>
-      </div>
-    </div>
-  </div>
-
-  <div class="card-body bg-light rounded-bottom">
-    <div class="row mb-3">
-      <div class="col-md-6">
-        <p class="mb-2"><i class="bi bi-envelope-fill me-2 text-primary"></i><strong>Email:</strong> <%= user.email %></p>
-      </div>
-      <div class="col-md-6">
-        <p class="mb-2"><i class="bi bi-telephone-fill me-2 text-success"></i><strong>Phone:</strong> <%= user.phoneNumber %></p>
-      </div>
-    </div>
-
-    <div class="text-end">
-      <a href="/users/edit-profile" class="btn btn-outline-primary fw-semibold px-4">
-        ✏️ Edit Profile
-      </a>
-    </div>
-  </div>
-</div>
 
 
     <!-- Clients Section -->
