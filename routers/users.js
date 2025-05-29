@@ -30,7 +30,7 @@ router.get("/profile", isLoggedIn, async (req, res) => {
 
   router.get("/userprofile",isLoggedIn,async(req,res)=>{
     try {
-      res.render('userprofile.ejs', { user: req.user });
+      res.render('userprofile.ejs', { user: req.user});
     } catch (error) {
       req.flash("error", "Failed to load profile.");
       res.redirect("/");
