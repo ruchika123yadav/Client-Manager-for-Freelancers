@@ -31,7 +31,6 @@
       </div>
     </div>
 
-    <!-- Client List Section -->
     <!-- Clients Section -->
 <div class="card shadow-sm mb-5">
   <div class="card-header text-white fw-bold text-center" style="background: linear-gradient(90deg, #43cea2, #185a9d);">
@@ -49,7 +48,9 @@
                 <h5 class="card-title fw-bold"><%= client.name %></h5>
                 <p class="card-text"><strong>Email:</strong> <%= client.email %></p>
                 <% if(client.phone) { %>
+
                   <p class="card-text"><strong>Phone:</strong> <%= client.phone %></p>
+                   
                 <% } %>
                 <% if(client.company) { %>
                   <p class="card-text"><strong>Company:</strong> <%= client.company %></p>
