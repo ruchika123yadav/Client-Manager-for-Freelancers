@@ -1,6 +1,6 @@
 const Client =require("../models/client.js")
 const User=require("../models/user.js")
-
+const Project=require("../models/project.js")
 
 module.exports.clientForm=async(req,res)=>{
     // const clientId=req.params.id
@@ -40,4 +40,44 @@ module.exports.addProject=async(req,res)=>{
         console.error("Error fetching clients:", err);
         res.status(500).send("Server Error");
     }
+}
+
+module.exports.addProjectPost= async (req, res) => {
+  try {
+    const {
+      clientId,
+      title,
+      description,
+      deadline,
+      paymentStatus,
+      amount,
+      isCompleted
+    } = req.body;
+
+    const newProject = new Project({
+      clientId,
+      title,
+      description,
+      deadline: deadline || null,
+      paymentStatus,
+      amount: amount || 0,
+      isCompleted: isCompleted === 'on' ? true : false
+    });
+    
+    await newProject.save();
+
+    res.render("addproject", {
+      clients: await Client.find(), // so dropdown remains populated
+      success: "Project added successfully!",
+      error: ""
+    });
+
+  } catch (err) {
+    console.error("❌ Error adding project:", err.message);
+    res.render("addproject", {
+      clients: await Client.find(),
+      success: "",
+      error: "Failed to add project. Please try again."
+    });
+  }
 }

@@ -1,4 +1,4 @@
-<%- layout('layouts/boilerplate') -%>
+<% layout('layouts/boilerplate') -%>
 
 <body class="bg-light">
 
@@ -47,9 +47,23 @@
             </form>
           </div>
         <% }) %>
+        <!-- Action Buttons -->
+<div class="d-flex justify-content-between mt-3">
+  <form action="/client/info/<%= client._id %>" method="GET">
+    <button class="btn btn-primary btn-sm">Info</button>
+  </form>
+
+  <form action="/client/delete/<%= client._id %>?_method=DELETE" method="POST" onsubmit="return confirm('Are you sure you want to delete this client and all associated projects?');">
+    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+  </form>
+</div>
+
       </div>
+      
     </div>
+    
   </div>
+  
 <% }); %>
 
       </div>
