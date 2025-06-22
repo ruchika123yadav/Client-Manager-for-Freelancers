@@ -1,4 +1,8 @@
 {
+  "scripts": {
+  "start": "node app.js",
+  "dev": "nodemon app.js"
+},
   "dependencies": {
     "config": "^3.3.12",
     "connect-flash": "^0.1.1",
