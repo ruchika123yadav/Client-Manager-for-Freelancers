@@ -1,33 +1,13 @@
+require('dotenv').config();
 const mongoose = require("mongoose");
-const dbgr = require("debug")("development:mongoose");
-const Freelancer = require("../models/client");
-const freelancerData = require("./data");
 
-mongoose
-  .connect("mongodb://127.0.0.1:27017/cmr", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  })
+const dbName = "freelancerManager";
+const dbUrl = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.hahzcwr.mongodb.net/${dbName}`;
+
+mongoose.connect(dbUrl)
   .then(() => {
-    console.log("Connection established");
-    // initDb(); // move inside here to avoid async timing issues
+    console.log("Connected to MongoDB Atlas successfully!");
   })
   .catch((err) => {
-    dbgr("Connection error:", err);
+    console.error("Error connecting to MongoDB Atlas:", err);
   });
-
-// const initDb = async () => {
-//   try {
-//     const count = await Freelancer.countDocuments();
-//     if (count === 0) {
-//       await Freelancer.insertMany(freelancerData.data);
-//       console.log("Data inserted successfully");
-//     } else {
-//       console.log("Data already exists. Skipping insertion.");
-//     }
-//   } catch (err) {
-//     console.error("Error inserting data:", err);
-//   }
-// };
-
-module.exports = mongoose.connection;

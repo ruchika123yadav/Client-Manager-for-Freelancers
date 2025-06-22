@@ -5,6 +5,7 @@ const userController=require('../controllers/authController')
 const User=require('../models/user')
 const localStrategy = require('passport-local');
 const isLoggedIn = require('../middlewares/isLoggedIn');
+const upload=require('../config/multer-congif')
 passport.use(new localStrategy(User.authenticate()));
 
 router.post("/signup", userController.signupUser);
@@ -30,15 +31,43 @@ router.get("/profile", isLoggedIn, async (req, res) => {
 
   router.get("/userprofile",isLoggedIn,async(req,res)=>{
     try {
-      res.render('userprofile.ejs', { user: req.user });
+      res.render('userprofile.ejs', { user: req.user});
     } catch (error) {
       req.flash("error", "Failed to load profile.");
       res.redirect("/");
     }
   })
-  
+  router.get("/edit-profile",isLoggedIn,async(req,res)=>{
+    try {
+      res.render('editprofile.ejs', { user: req.user });
+    } catch (error) {
+      req.flash("error", "Failed to load profile.");
+      res.redirect("/");
+    }
+  })
+  router.post("/profile",isLoggedIn,upload.single("picture"),async(req,res)=>{
+    try {
+    const { email, phoneNumber } = req.body;
 
+    const updateFields = {
+      email,
+      phoneNumber
+    };
 
+    if (req.file) {
+      updateFields.picture = {
+        data: req.file.buffer,
+        contentType: req.file.mimetype
+      };
+    }
 
+    await User.findByIdAndUpdate(req.user._id, updateFields, { new: true });
+
+    res.redirect("/users/userprofile"); // or profile page
+  } catch (err) {
+    console.error("Update error:", err);
+    res.status(500).send("Server error");
+  }
+  })
 router.get("/logout",isLoggedIn,userController.logoutUser);
 module.exports=router
