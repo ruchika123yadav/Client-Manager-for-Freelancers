@@ -20,7 +20,7 @@ router.post('/login', passport.authenticate('local', {
 router.get("/profile", isLoggedIn, async (req, res) => {
     try {
       const userWithClients = await req.user.populate('clients');
-      console.log(userWithClients);
+      userWithClients.populate('clients.projects')
       res.render('profile.ejs', { user: userWithClients });
     } catch (err) {
       console.error("Error fetching user with clients:", err);

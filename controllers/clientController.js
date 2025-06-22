@@ -65,7 +65,14 @@ module.exports.addProjectPost= async (req, res) => {
     });
     
     await newProject.save();
-
+    // Add project reference to client
+    const client = await Client.findById(clientId);
+    if (!client) {
+      req.flash("error", "Client not found.");
+      return res.redirect("/client/addproject");
+    }
+    client.projects.push(newProject._id);
+    await client.save();
     res.render("addproject", {
       clients: await Client.find(), // so dropdown remains populated
       success: "Project added successfully!",
