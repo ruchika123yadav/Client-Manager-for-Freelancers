@@ -86,9 +86,7 @@ Client-Manager-for-Freelancers/
 
 ## ⚙️ Setup Instructions
 
-### 1. Clone the repository
-
-```bash
+### 1. Clone the Repository
 git clone https://github.com/SachidanandSharma2162/client-manager-for-freelancers.git
 cd client-manager-for-freelancers
 
@@ -102,6 +100,8 @@ DB_PASSWORD=your_mongo_atlas_db_password
 
 ### 4. Run the app
 npm run dev
+
+---
 
 👥 Contributors
 A huge thanks to everyone who contributed to this project!
