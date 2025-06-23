@@ -18,18 +18,6 @@ router.post('/login', passport.authenticate('local', {
     successFlash: 'Welcome!'
 }),(req,res)=>{});
 
-// router.get("/profile", isLoggedIn, async (req, res) => {
-//     try {
-//       const userWithClients = await req.user.populate('clients');
-//       userWithClients.populate('clients.projects')
-//       const project = await Project.find({ user: req.user._id }).populate('client');
-//       res.render('profile.ejs', { user: userWithClients, project:project});
-//     } catch (err) {
-//       console.error("Error fetching user with clients:", err);
-//       req.flash("error", "Failed to load profile.");
-//       res.redirect("/");
-//     }
-//   });
 router.get("/profile", isLoggedIn, async (req, res) => {
   try {
     const userWithClients = await req.user.populate({
