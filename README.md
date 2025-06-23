@@ -94,7 +94,7 @@ cd client-manager-for-freelancers
 npm install
 
 ### 3. Create a .env file
-PORT=8080
+PORT=your_localhost_port_number
 DB_USERNAME=your_mongo_atlas_db_username
 DB_PASSWORD=your_mongo_atlas_db_password
 
