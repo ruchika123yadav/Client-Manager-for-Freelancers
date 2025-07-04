@@ -1,4 +1,5 @@
 <% layout('layouts/boilerplate') -%>
+
 <div class="container mt-5">
   <div class="card mb-4 shadow">
     <div class="card-header bg-primary text-white">
@@ -39,7 +40,7 @@
           </p>
           <!-- Action buttons -->
           <div class="d-flex gap-2">
-            <form action="/projects/<%= project._id %>/status" method="POST">
+            <form action="/users/project/<%= project._id %>/status" method="POST">
               <input
                 type="hidden"
                 name="isCompleted"
@@ -53,7 +54,7 @@
               </button>
             </form>
             <form
-              action="/projects/<%= project._id %>?_method=DELETE"
+              action="/client/delete/<%= project._id %>?_method=DELETE"
               method="POST"
               onsubmit="return confirm('Delete this project?');"
             >

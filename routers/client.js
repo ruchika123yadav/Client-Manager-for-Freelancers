@@ -14,7 +14,7 @@ router.post('/addProjectPost',isLoggedIn,clientController.addProjectPost);
 router.delete("/delete/:id",isLoggedIn,async (req, res) => {
   try {
     await Client.findByIdAndDelete(req.params.id);
-    res.redirect("/profile");
+    res.redirect("/client/addproject");
   } catch (err) {
     console.error("Client deletion failed:", err);
     res.status(500).send("Error deleting client.");

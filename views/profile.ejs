@@ -37,11 +37,11 @@
             <p class="mb-2"><strong>Status:</strong> <%= project.isCompleted ? "Completed" : "Not Completed" %></p>
 
             <!-- Completion Buttons -->
-            <form method="POST" action="/projects/<%= project._id %>/status" class="d-inline">
+            <form method="POST" action="/users/project/<%= project._id %>/status" class="d-inline">
               <input type="hidden" name="isCompleted" value="true" />
               <button class="btn btn-success btn-sm me-1" type="submit">Mark as Completed</button>
             </form>
-            <form method="POST" action="/projects/<%= project._id %>/status" class="d-inline">
+            <form method="POST" action="/users/project/<%= project._id %>/status" class="d-inline">
               <input type="hidden" name="isCompleted" value="false" />
               <button class="btn btn-warning btn-sm" type="submit">Mark as Incomplete</button>
             </form>
